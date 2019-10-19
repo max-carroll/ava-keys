@@ -2,14 +2,27 @@ import {createUseStyles} from 'react-jss'
 import React from 'react';
 const useStyles = createUseStyles({
   letter : {
-    fontSize: '30rem'
+    fontSize: '30rem',
+  },
+  complete : {
+    color: 'yellow'
+  },
+  uncomplete : {
+    color: 'blue'
   }
+  
+
  })
 
-export default function Letter({letter}) {
+export default function Letter({letter, postitionInWord, currentPosition}) {
 
   const classes =useStyles()
+ const style =  postitionInWord < currentPosition ? classes.complete : classes.uncomplete
+
+ console.log(postitionInWord, currentPosition)
   return (
-    <div className={classes.letter} >{letter}</div> 
+    <span className={ style}>
+      <span className={classes.letter} >{letter}</span> 
+    </span>
   )
 }
