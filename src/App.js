@@ -1,6 +1,7 @@
+// eslint-disable
 import React from 'react';
 import './App.css';
-import {createUseStyles} from 'react-jss'
+
 import {LetterGame, WordGame} from './components';
 
 

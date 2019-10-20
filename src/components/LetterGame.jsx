@@ -1,3 +1,5 @@
+// eslint-disable
+
 import React from 'react';
 import '../App.css';
 import { Letter, RandomEmoji} from '../components'

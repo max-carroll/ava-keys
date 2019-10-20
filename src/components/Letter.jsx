@@ -19,7 +19,7 @@ export default function Letter({letter, postitionInWord, currentPosition}) {
   const classes =useStyles()
  const style =  postitionInWord < currentPosition ? classes.complete : classes.uncomplete
 
- console.log(postitionInWord, currentPosition)
+ //console.log(postitionInWord, currentPosition)
   return (
     <span className={ style}>
       <span className={classes.letter} >{letter}</span> 
