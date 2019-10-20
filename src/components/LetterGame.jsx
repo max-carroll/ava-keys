@@ -10,6 +10,7 @@ import {Fanfare, Tada} from '../audio'
 
 const getRandomLetter = () => {
   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  //var characters       = 'abcdefghijklmnopqrstuvwxyz';
   var result = characters.charAt(Math.floor(Math.random() * characters.length));
   return result  
  }
@@ -37,7 +38,7 @@ export default function LetterGame() {
   const handler = React.useCallback((e)=> {
     const letter = getLetterFromEvent(e)
     setCurrentPress(letter)
-    if (currentLetter === letter) {
+    if (currentLetter.toLowerCase() === letter.toLowerCase()) {
       setWin(true)
       var newLetter = getRandomLetter()
       setCurrentLetter(newLetter)

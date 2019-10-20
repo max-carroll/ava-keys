@@ -2,7 +2,7 @@ import {createUseStyles} from 'react-jss'
 import React from 'react';
 const useStyles = createUseStyles({
   letter : {
-    fontSize: '30rem',
+    fontSize: '15rem',
   },
   complete : {
     color: 'yellow'

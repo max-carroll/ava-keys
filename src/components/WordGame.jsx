@@ -1,11 +1,9 @@
 // eslint-disable
 import React from 'react';
 import '../App.css';
-import { Word } from '.'
+import { Word, RandomEmoji } from '.'
 import { useEventListener, useAudio } from '../hooks'
 import { Tada } from '../audio'
-
-
 
 const getLetterFromEvent = e => {
   var keynum;
@@ -19,8 +17,14 @@ const getLetterFromEvent = e => {
 }
 
 export default function LetterGame() {
+  // var startingWords =[
+  //   "dog","cat","dad","mum","ava"
+  // ]
+
+  // var startingWords = ['hello','timmy']
+
   var startingWords =[
-    "dog","cat","dad","mum","ava"
+    "chicken","banana","leopard","dolphin","panther",'aeroplane','fridge','freezer','poster','table','family','animal'
   ]
 
   const [words, setWords] = React.useState(startingWords)
@@ -29,6 +33,7 @@ export default function LetterGame() {
   const [currentPress, setCurrentPress] = React.useState(null)
   const [currentLetter, setCurrentLetter] = React.useState(currentWord.charAt(position))
   const [win, setWin] = React.useState(false)
+  const [wordComplete, setWordComplete] = React.useState(false)
   const { play } = useAudio(Tada)
 
   const handler = React.useCallback((e) => {
@@ -37,30 +42,34 @@ export default function LetterGame() {
     
     setCurrentPress(press)
     if (currentLetter.toLowerCase() === press.toLowerCase()) {
-      setWin(true)
-      let word = currentWord
 
+      let word = currentWord
+      
       var nextPosition = position + 1;
       setPosition(nextPosition)
-
+      
       if (nextPosition === word.length) {
-        setPosition(0)
-        word = words.pop()
-        setWord(word)
-        const updatedWords = words.filter(w=> w !== word)
-        setWords(updatedWords)
-        nextPosition = 0
+
+        if (words.length === 0 ) {
+          setWin(true) // the game is completely won
+        }
+        else {
+          word = words.pop()
+          const updatedWords = words.filter(w=> w !== word)
+          nextPosition = 0
+          setPosition(0)
+          setWord(word)
+          setWords(updatedWords)
+          setWordComplete(true)
+          play()
+          setTimeout(function () { setWordComplete(false); }, 1000);
+        }
       }
       
       var newLetter = word.charAt(nextPosition)
       setCurrentLetter(newLetter)
-
-
-
-      play()
-      setTimeout(function () { setWin(false); }, 3000);
-
-
+      
+     
     }
   })
 
@@ -77,7 +86,15 @@ export default function LetterGame() {
   return (
     <div className="App">
       <header className="App-header">
-        <Word word={currentWord} currentPosition={position} />
+        {
+          win &&
+             <p>you win!!!</p>
+        }
+        { !win &&
+          !wordComplete
+            ? <Word word={currentWord.toUpperCase()} currentPosition={position} />
+            : <RandomEmoji />
+        }
       </header>
     </div>
   );
