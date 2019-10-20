@@ -3,7 +3,8 @@ import React from 'react';
 import '../App.css';
 import { Word, RandomEmoji } from '.'
 import { useEventListener, useAudio } from '../hooks'
-import { Tada } from '../audio'
+import { Tada, Oops, TryAgain } from '../audio'
+import Points from './Points';
 
 const getLetterFromEvent = e => {
   var keynum;
@@ -18,42 +19,51 @@ const getLetterFromEvent = e => {
 
 export default function LetterGame() {
   // var startingWords =[
-  //   "dog","cat","dad","mum","ava"
+  //   "dog","cat","dad","mum","ava","bat","bag","tag","sad","mad","lad","boy","girl","pot","dot","spot","eye","my","foot"
   // ]
 
-  // var startingWords = ['hello','timmy']
+  var startingWords = ['hello','timmy']
 
-  var startingWords =[
-    "chicken","banana","leopard","dolphin","panther",'aeroplane','fridge','freezer','poster','table','family','animal'
-  ]
+  // var startingWords =[
+  //   "chicken","banana","leopard","dolphin","panther",'aeroplane','fridge','freezer','poster','table','family','animal'
+  // ]
 
   const [words, setWords] = React.useState(startingWords)
   const [position, setPosition] = React.useState(0)
   const [currentWord, setWord] = React.useState("tin")
-  const [currentPress, setCurrentPress] = React.useState(null)
   const [currentLetter, setCurrentLetter] = React.useState(currentWord.charAt(position))
   const [win, setWin] = React.useState(false)
   const [wordComplete, setWordComplete] = React.useState(false)
   const { play } = useAudio(Tada)
+  const { play : playOops} = useAudio(TryAgain)
+  const [score, setScore]= React.useState(0)
+
+
+const reset = () => {
+  setWords(startingWords)
+  setScore(0)
+  setPosition(0)
+  setWin(false)
+  setWordComplete(false)
+  setWord("tin")
+  setCurrentLetter("tin".charAt(0))
+}
 
   const handler = React.useCallback((e) => {
     const press = getLetterFromEvent(e)
     console.log(`press: ${press}, currentLetter: ${currentLetter}, position: ${position}`)
     
-    setCurrentPress(press)
     if (currentLetter.toLowerCase() === press.toLowerCase()) {
-
       let word = currentWord
-      
       var nextPosition = position + 1;
       setPosition(nextPosition)
       
       if (nextPosition === word.length) {
-
         if (words.length === 0 ) {
           setWin(true) // the game is completely won
         }
         else {
+          setScore(score + 10)
           word = words.pop()
           const updatedWords = words.filter(w=> w !== word)
           nextPosition = 0
@@ -68,33 +78,30 @@ export default function LetterGame() {
       
       var newLetter = word.charAt(nextPosition)
       setCurrentLetter(newLetter)
-      
-     
+    }
+    else {
+      playOops()
     }
   })
 
   useEventListener('keydown', handler);
-
-
-  React.useEffect(() => {
-
-    // return document.removeEventListener('keydown', handleKeyDown)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
 
   return (
     <div className="App">
       <header className="App-header">
         {
           win &&
+          <>
              <p>you win!!!</p>
+             <button onClick={reset}>retry</button>
+            </>
         }
         { !win &&
           !wordComplete
             ? <Word word={currentWord.toUpperCase()} currentPosition={position} />
             : <RandomEmoji />
         }
+        <Points score={score} />
       </header>
     </div>
   );

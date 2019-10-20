@@ -5,8 +5,7 @@ import '../App.css';
 import { Letter, RandomEmoji} from '../components'
 import {useEventListener, useAudio} from '../hooks/'
 import {createUseStyles} from 'react-jss'
-import {Fanfare, Tada} from '../audio'
-
+import {Fanfare, Tada, TryAgain} from '../audio'
 
 const getRandomLetter = () => {
   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -33,6 +32,7 @@ export default function LetterGame() {
   const [currentLetter, setCurrentLetter] = React.useState(getRandomLetter())
   const [win, setWin] = React.useState(false)
   const {play} = useAudio(Tada)
+  const { play : playOops} = useAudio(TryAgain)
   
 
   const handler = React.useCallback((e)=> {
@@ -44,6 +44,9 @@ export default function LetterGame() {
       setCurrentLetter(newLetter)
       play()
       setTimeout(function(){ setWin(false);}, 3000);
+    }
+    else {
+      playOops()
     }
   })
 

@@ -1,4 +1,5 @@
 export {default as Letter} from './Letter'
+export {default as Points} from './Points'
 export {default as LetterGame} from './LetterGame'
 export {default as WordGame} from './WordGame'
 export {default as Word} from './Word'
