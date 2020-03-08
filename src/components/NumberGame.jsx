@@ -89,7 +89,7 @@ React.useEffect(()=> {
 
   React.useEffect(()=> {
     if(win == false) {
-    //  textBox.current.focus()
+     textBox.current.focus()
       console.log(textBox)
     }
   },[win])
@@ -107,6 +107,7 @@ React.useEffect(()=> {
               // InputProps={{
               //   ref:{textBox}
               // }}
+              inputRef={textBox}
               value={answer} 
               onChange={handleChange}
             />
