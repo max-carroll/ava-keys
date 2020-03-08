@@ -24,9 +24,10 @@ export default function LetterGame() {
 
   var startingWords = ['hello','timmy']
 
-  // var startingWords =[
-  //   "chicken","banana","leopard","dolphin","panther",'aeroplane','fridge','freezer','poster','table','family','animal'
-  // ]
+  var startingWords =[
+ //   "chicken","banana","leopard","dolphin","panther",'aeroplane','fridge','freezer','poster','table','family','animal'
+//  'dad','milk','star','genius','poo-poo','chick','wood','timmy','tommy','tammy','dizzy'
+'andrea','lizzy','dizzy','louisa','max','maxymus','jhonna','jojo' ,'maria','yvvonne','jet','ava' ]
 
   const [words, setWords] = React.useState(startingWords)
   const [position, setPosition] = React.useState(0)
@@ -101,7 +102,7 @@ const reset = () => {
             ? <Word word={currentWord.toUpperCase()} currentPosition={position} />
             : <RandomEmoji />
         }
-        <Points score={score} />
+        {/* <Points score={score} /> */}
       </header>
     </div>
   );
