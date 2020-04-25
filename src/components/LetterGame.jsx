@@ -4,8 +4,7 @@ import React from 'react';
 import '../App.css';
 import { Letter, RandomEmoji} from '../components'
 import {useEventListener, useAudio} from '../hooks/'
-import {createUseStyles} from 'react-jss'
-import {Fanfare, Tada, TryAgain} from '../audio'
+import {Tada, TryAgain} from '../audio'
 
 const getRandomLetter = () => {
   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

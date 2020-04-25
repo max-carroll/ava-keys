@@ -3,8 +3,7 @@ import React from 'react';
 import '../App.css';
 import { Word, RandomEmoji } from '.'
 import { useEventListener, useAudio } from '../hooks'
-import { Tada, Oops, TryAgain } from '../audio'
-import Points from './Points';
+import { Tada, TryAgain } from '../audio'
 
 const getLetterFromEvent = e => {
   var keynum;

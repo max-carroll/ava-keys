@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
 
 
-import { LetterGame, WordGame, Word, NumberGame } from './components';
+import { LetterGame, WordGame, NumberGame } from './components';
 
 
 function App() {

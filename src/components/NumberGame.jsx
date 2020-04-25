@@ -1,45 +1,19 @@
 // eslint-disable
 import React from 'react';
 import '../App.css';
-import { Word, RandomEmoji } from '.'
-import { useEventListener, useAudio } from '../hooks'
-import { Tada, Oops, TryAgain } from '../audio'
-import Points from './Points';
+import { RandomEmoji } from '.'
+import { useAudio } from '../hooks'
+import { Tada, TryAgain } from '../audio'
 import { TextField, Grid, Typography } from '@material-ui/core';
 
-const getLetterFromEvent = e => {
-  var keynum;
-  if (window.event) { // IE                    
-    keynum = e.keyCode;
-  } else if (e.which) { // Netscape/Firefox/Opera                   
-    keynum = e.which;
-  }
-  const letter = String.fromCharCode(keynum)
-  return letter
-}
-
 export default function LetterGame() {
-  // var startingWords =[
-  //   "dog","cat","dad","mum","ava","bat","bag","tag","sad","mad","lad","boy","girl","pot","dot","spot","eye","my","foot"
-  // ]
-
-  var startingWords = ['hello', 'timmy']
-
-  var startingWords = [
-    //   "chicken","banana","leopard","dolphin","panther",'aeroplane','fridge','freezer','poster','table','family','animal'
-    //  'dad','milk','star','genius','poo-poo','chick','wood','timmy','tommy','tammy','dizzy'
-    'andrea', 'lizzy', 'dizzy', 'louisa', 'max', 'maxymus', 'jhonna', 'jojo', 'maria', 'yvvonne', 'jet', 'ava']
 
   var firstSum = { question: "1 + 1 =", answer: "2" }
-  const [words, setWords] = React.useState(startingWords)
-  const [position, setPosition] = React.useState(0)
-  const [currentWord, setWord] = React.useState("tin")
+
   const [sum, setSum] = React.useState(firstSum)
   const [win, setWin] = React.useState(false)
-  const [wordComplete, setWordComplete] = React.useState(false)
   const { play } = useAudio(Tada)
   const { play: playOops } = useAudio(TryAgain)
-  const [score, setScore] = React.useState(0)
 
   const textBox = React.useRef(null)
 
@@ -110,10 +84,6 @@ export default function LetterGame() {
             <Grid item xs={3} >
 
               <TextField
-                //variant="outlined"
-                // InputProps={{
-                //   ref:{textBox}
-                // }}
                 inputRef={textBox}
                 value={answer}
                 InputProps={{
