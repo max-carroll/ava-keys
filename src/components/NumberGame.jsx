@@ -5,7 +5,7 @@ import { Word, RandomEmoji } from '.'
 import { useEventListener, useAudio } from '../hooks'
 import { Tada, Oops, TryAgain } from '../audio'
 import Points from './Points';
-import { TextField } from '@material-ui/core';
+import { TextField, Grid, Typography } from '@material-ui/core';
 
 const getLetterFromEvent = e => {
   var keynum;
@@ -42,7 +42,7 @@ export default function LetterGame() {
   const [score, setScore] = React.useState(0)
 
   const textBox = React.useRef(null)
-  
+
   const [answer, setAnswer] = React.useState(null)
 
   const handleChange = event => {
@@ -50,11 +50,11 @@ export default function LetterGame() {
   };
 
   const sums = [
-    { question: "1 + 1 + =", answer : "2"},
-    { question: "1 + 2 + =", answer : "3"},
-    { question: "1 + 3 + =", answer : "4"},
-    { question: "1 + 4 + =", answer : "5"},
-    { question: "1 + 5 + =", answer : "6"},
+    { question: "1 + 1 + =", answer: "2" },
+    { question: "1 + 2 + =", answer: "3" },
+    { question: "1 + 3 + =", answer: "4" },
+    { question: "1 + 4 + =", answer: "5" },
+    { question: "1 + 5 + =", answer: "6" },
   ]
 
   function GetSum() {
@@ -63,14 +63,14 @@ export default function LetterGame() {
     var number2 = Math.floor(Math.random() * 10);
 
     return {
-      question : number1 + " + " + number2 + " = ",
+      question: number1 + " + " + number2 + " = ",
       answer: (number1 + number2).toString()
     }
 
 
   }
 
-React.useEffect(()=> {
+  React.useEffect(() => {
     if (answer == sum.answer) {
       setWin(true)
       var newSum = GetSum()
@@ -79,7 +79,7 @@ React.useEffect(()=> {
       setAnswer(null)
       play()
       setTimeout(function () { setWin(false); }, 1000);
-    
+
     }
     else {
 
@@ -87,41 +87,50 @@ React.useEffect(()=> {
 
   }, [answer])
 
-  React.useEffect(()=> {
-    if(win == false) {
-     textBox.current.focus()
+  React.useEffect(() => {
+    if (win == false) {
+      textBox.current.focus()
       console.log(textBox)
     }
-  },[win])
+  }, [win])
 
   return (
     <div className="App">
       <header className="App-header">
-      
-      <p>
-          {
-           !win && sum &&
-           <>
-            {sum.question}
-            <TextField
-              // InputProps={{
-              //   ref:{textBox}
-              // }}
-              inputRef={textBox}
-              value={answer} 
-              onChange={handleChange}
-            />
-            </>
-          }
-          {
-            win && <RandomEmoji />
-          }
 
 
-        </p>
+        {
+          !win && sum &&
+          <Grid container justify="center" alignContent="center">
+   
+            <Grid item >
+              <Typography>{sum.question}</Typography>
+            </Grid>
+  
+
+            <Grid item>
+              <TextField
+              variant="outlined"
+                // InputProps={{
+                //   ref:{textBox}
+                // }}
+                inputRef={textBox}
+                value={answer}
+                onChange={handleChange}
+              />
+ 
+ </Grid>
+          </Grid>
+        }
+        {
+          win && <RandomEmoji />
+        }
+
+
+
 
       </header>
-    </div>
+    </div >
   );
 }
 
