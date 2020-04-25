@@ -101,25 +101,31 @@ export default function LetterGame() {
 
         {
           !win && sum &&
-          <Grid container justify="center" alignContent="center">
-   
-            <Grid item >
-              <Typography>{sum.question}</Typography>
-            </Grid>
-  
+          <Grid container justify="center" alignContent="center" alignItems="center" spacing={2}>
 
             <Grid item>
+              <Typography variant="h1">{sum.question}</Typography>
+            </Grid>
+
+            <Grid item xs={3} >
+
               <TextField
-              variant="outlined"
+                //variant="outlined"
                 // InputProps={{
                 //   ref:{textBox}
                 // }}
                 inputRef={textBox}
                 value={answer}
+                InputProps={{
+                  style: {
+                     fontSize: '5rem', color: 'white'
+                  }
+                }}
+                autoFocus
+ 
                 onChange={handleChange}
               />
- 
- </Grid>
+            </Grid>
           </Grid>
         }
         {
