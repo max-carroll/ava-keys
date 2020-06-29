@@ -3,7 +3,7 @@
 import React from 'react';
 import '../App.css';
 import { Letter, RandomEmoji} from '../components'
-import {useEventListener, useAudio} from '../hooks/'
+import {useEventListener, useAudio} from '../hooks'
 import {Tada, TryAgain} from '../audio'
 
 const getRandomLetter = () => {

@@ -5,8 +5,8 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
 
 
-import { LetterGame, WordGame, NumberGame } from './components';
-import { Tagalog } from './components/Tagalog';
+import { LetterGame, WordGame, NumberGame, Tagalog } from './games';
+
 
 
 function App() {

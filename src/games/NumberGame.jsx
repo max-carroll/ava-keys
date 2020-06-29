@@ -1,7 +1,7 @@
 // eslint-disable
 import React from 'react';
 import '../App.css';
-import { RandomEmoji } from '.'
+import { RandomEmoji } from '../components'
 import { useAudio } from '../hooks'
 import { Tada, TryAgain } from '../audio'
 import { TextField, Grid, Typography } from '@material-ui/core';
@@ -59,7 +59,7 @@ export default function LetterGame() {
 
     }
 
-  }, [answer])
+  }, [answer, play, sum.answer])
 
   React.useEffect(() => {
     if (win == false) {

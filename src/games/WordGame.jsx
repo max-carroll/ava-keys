@@ -1,7 +1,7 @@
 // eslint-disable
 import React from 'react';
 import '../App.css';
-import { Word, RandomEmoji } from '.'
+import { Word, RandomEmoji } from '../components'
 import { useEventListener, useAudio } from '../hooks'
 import { Tada, TryAgain } from '../audio'
 

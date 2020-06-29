@@ -1,7 +1,18 @@
 import React from 'react'
 import { Paper, Grid } from '@material-ui/core'
 import { useAudio } from '../hooks'
-import { ChickenIntro, CatIntro, PresentIntro, IceCreamIntro, Tada } from '../audio'
+import { ChickenIntro, CatIntro, PresentIntro, IceCreamIntro, Tada, } from '../audio'
+
+import Princess from '../audio/Princess.mp3'
+import Lips from '../audio/Lips.mp3'
+import Eyes from '../audio/Eyes.mp3'
+import Rocket from '../audio/Rocket.mp3'
+import Rainbow from '../audio/Rainbow.mp3'
+import Fire from '../audio/Fire.mp3'
+import Duck from '../audio/Duck.mp3'
+import SmileyFace from '../audio/SmileyFace.mp3'
+import Boat from '../audio/Boat.mp3'
+import Dragon from '../audio/Dragon.mp3'
 
 
 export const WordCard = ({ word }) => {
@@ -46,9 +57,17 @@ export const Tagalog = () => {
         },
         { tagalog: 'regalo', picture : '🎁', intro: PresentIntro},
         { tagalog: 'sorbetes', picture : '🍦', intro: IceCreamIntro},
-        { tagalog: 'labi', picture : '💋'},
-        { tagalog: 'princessa', picture : '👸'},
-        { tagalog: 'mata', picture : '👀'},
+        { tagalog: 'labi', picture : '💋', intro: Lips},
+        { tagalog: 'princessa', picture : '👸', intro: Princess},
+        { tagalog: 'mata', picture : '👀', intro: Eyes},
+        
+        { tagalog: 'rocket', picture : '🚀', intro: Rocket},
+        { tagalog: 'rainbow', picture : '🌈', intro: Rainbow},
+        { tagalog: 'fire', picture : '🔥', intro: Fire},
+        { tagalog: 'duck', picture : '🦆', intro: Duck},
+        { tagalog: 'smiley face', picture : '😀', intro: SmileyFace},
+        { tagalog: 'boat', picture : '⛵', intro: Boat},
+        { tagalog: 'dragon', picture : '🐉', intro: Dragon},
 
         // Sort into categories, tags
 
