@@ -3,8 +3,7 @@
 import React from "react";
 import "../App.css";
 import { Letter, RandomEmoji } from "../components";
-import Speech from "react-speech";
-import { useEventListener, useAudio } from "../hooks";
+import { useEventListener, useAudio, useSpeech } from "../hooks";
 import { Tada, TryAgain } from "../audio";
 import { Keyboard } from "../components/Keyboard";
 import { Grid } from "@material-ui/core";
@@ -37,6 +36,10 @@ export default function LetterGame() {
   const { play } = useAudio(Tada);
   const { play: playOops } = useAudio(TryAgain);
 
+
+
+  const talk = useSpeech(`Can you find letter ${currentLetter} `)
+
   const handler = React.useCallback((e) => {
     const letter = getLetterFromEvent(e);
     setCurrentPress(letter);
@@ -57,8 +60,13 @@ export default function LetterGame() {
 
   React.useEffect(() => {
     // return document.removeEventListener('keydown', handleKeyDown)
+    if (win) return
+    talk()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentLetter, win]);
+
+ 
+ 
 
   return (
     <Grid container direction="column">
@@ -86,3 +94,7 @@ export default function LetterGame() {
     </Grid>
   );
 }
+
+
+
+
