@@ -24,17 +24,33 @@ export default function LetterGame() {
   };
 
 
+  function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min) ) + min;
+  }
+
+  const any2Numbers = (min, max) => {
+    var number1 = getRndInteger(min, max)
+    var number2 = getRndInteger(min, max);
+    return [number1, number2]
+  }
+
+  const getDivisibleNumbers = () => {
+    const [a,b] = any2Numbers(1,12)
+    const product = a*b
+    return [product, a]
+
+  }
+
+
   function getRandomOperation() {
     const operations = [
-      {name: "x", handleOperation : (a,b) => a * b},
-      {name: "/", handleOperation : (a,b) => a / b},
-      {name: "+", handleOperation : (a,b) => a + b},
-      {name: "-", handleOperation : (a,b) => a - b},
+      {name: "x", handleOperation : (a,b) => a * b, handleGetNumbers : () => any2Numbers(0,12)},
+      {name: "/", handleOperation : (a,b) => a / b, handleGetNumbers : getDivisibleNumbers},
+      {name: "+", handleOperation : (a,b) => a + b, handleGetNumbers : () => any2Numbers(0,12)},
+      {name: "-", handleOperation : (a,b) => a - b, handleGetNumbers : () => any2Numbers(0,12)},
     ]
 
-    var index = Math.floor(Math.random() * 3);
-
-    
+    var index = Math.floor(Math.random() * 4);
 
     var result = operations[index]
 
@@ -44,11 +60,9 @@ export default function LetterGame() {
   }
 
   function GetSum() {
-
-    var number1 = Math.floor(Math.random() * 10);
-    var number2 = Math.floor(Math.random() * 10);
-
+  
     var operation = getRandomOperation()
+    var [number1,number2] = operation.handleGetNumbers()
 
     return {
       question: number1 + ` ${operation.name} ` + number2 + " = ",
