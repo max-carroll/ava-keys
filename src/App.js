@@ -6,6 +6,7 @@ import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
 
 
 import { LetterGame, WordGame, NumberGame, Tagalog } from './games';
+import { Speak } from './games/Speak';
 
 
 
@@ -22,6 +23,7 @@ function App() {
             <Typography><Link to="/numbers" style={{ color: 'white', textDecoration: 'none' }}><Button>NumberGame</Button></Link></Typography>
             <Typography><Link to="/letters" style={{ color: 'white', textDecoration: 'none'  }}><Button>Letters Game</Button></Link></Typography>
             <Typography><Link to="/tagalog" style={{ color: 'white', textDecoration: 'none'  }}><Button>Tagalog Game</Button></Link></Typography>
+            <Typography><Link to="/talk" style={{ color: 'white', textDecoration: 'none'  }}><Button>Talk Game</Button></Link></Typography>
           </Toolbar>
         </AppBar>
         <div className="App">
@@ -32,6 +34,7 @@ function App() {
               <Route component={LetterGame} path="/letters" />
               <Route component={NumberGame} path="/numbers" />
               <Route component={Tagalog} path="/tagalog" />
+              <Route component={Speak} path="/talk" />
             </Switch>
 
 

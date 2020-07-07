@@ -50,7 +50,7 @@ export default function LetterGame() {
       play();
       setTimeout(function () {
         setWin(false);
-      }, 3000);
+      }, 1000);
     } else {
       playOops();
     }
