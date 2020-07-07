@@ -1,5 +1,6 @@
 export function useSpeech(text) {
   // https://usefulangle.com/post/98/javascript-text-to-speech
+  // https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
   // get all voices that browser offers
   var available_voices = window.speechSynthesis.getVoices();
 
@@ -19,7 +20,7 @@ export function useSpeech(text) {
 
   // new SpeechSynthesisUtterance object
   var utter = new SpeechSynthesisUtterance();
-  utter.rate = 1;
+  utter.rate = 0.3;
   utter.pitch = 0.5;
   utter.text = text;
   utter.volume = 100;
