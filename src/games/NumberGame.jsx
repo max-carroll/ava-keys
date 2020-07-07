@@ -8,7 +8,7 @@ import { TextField, Grid, Typography } from '@material-ui/core';
 
 export default function LetterGame() {
 
-  var firstSum = { question: "1 + 1 =", answer: "2" }
+  var firstSum = { question: "1 + 1 =", answer: "2"}
 
   const [sum, setSum] = React.useState(firstSum)
   const [win, setWin] = React.useState(false)
@@ -23,25 +23,37 @@ export default function LetterGame() {
     setAnswer(event.target.value);
   };
 
-  const sums = [
-    { question: "1 + 1 + =", answer: "2" },
-    { question: "1 + 2 + =", answer: "3" },
-    { question: "1 + 3 + =", answer: "4" },
-    { question: "1 + 4 + =", answer: "5" },
-    { question: "1 + 5 + =", answer: "6" },
-  ]
+
+  function getRandomOperation() {
+    const operations = [
+      {name: "x", handleOperation : (a,b) => a * b},
+      {name: "/", handleOperation : (a,b) => a / b},
+      {name: "+", handleOperation : (a,b) => a + b},
+      {name: "-", handleOperation : (a,b) => a - b},
+    ]
+
+    var index = Math.floor(Math.random() * 3);
+
+    
+
+    var result = operations[index]
+
+    console.log(result)
+
+    return result;
+  }
 
   function GetSum() {
 
     var number1 = Math.floor(Math.random() * 10);
     var number2 = Math.floor(Math.random() * 10);
 
+    var operation = getRandomOperation()
+
     return {
-      question: number1 + " + " + number2 + " = ",
-      answer: (number1 + number2).toString()
+      question: number1 + ` ${operation.name} ` + number2 + " = ",
+      answer: (operation.handleOperation(number1,number2)).toString()
     }
-
-
   }
 
   React.useEffect(() => {
@@ -53,7 +65,6 @@ export default function LetterGame() {
       setAnswer(null)
       play()
       setTimeout(function () { setWin(false); }, 1000);
-
     }
     else {
 
