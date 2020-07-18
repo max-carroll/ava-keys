@@ -9,6 +9,10 @@ import bg from '../images/bg.jpg'
 import pipeUpImage from '../images/pipeUp.png'
 import pipeDownImage from '../images/pipeDown.png'
 
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min) ) + min;
+}
+
 export function Flappy() {
 
   const [bgImage, setBgImage] = React.useState(null)
@@ -31,18 +35,20 @@ export function Flappy() {
   },[])
 
   function getPipe(n) {
-    const height = Math.floor(Math.random() * 0) - 200;
+    const height = getRndInteger(100, 400)
+
     const distanceBetween = 250 * (n - 1)
 
     return {
       up : {
         x: 250 + distanceBetween, 
-        y: height + 600
+        y: height 
       },
       down : {
         x: 250 + distanceBetween,
-        y: height
+        y: height - 600
       }  
+
     }
   }
 
