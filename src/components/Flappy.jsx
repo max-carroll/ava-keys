@@ -13,6 +13,7 @@ export function Flappy() {
 
   const [bgImage, setBgImage] = React.useState(null)
   const [flappy, setFlappy] = React.useState(null)
+  const [restart, setRestart] = React.useState(false)
 
   const canvasRef = React.useRef(null)
 
@@ -47,10 +48,11 @@ export function Flappy() {
     pipeDown.src = pipeDownImage
 
     var flappyPosition = {x: 20, y: 200}
-    var pipeUpPosition = {x: 150, y: 400}
-    var pipeDownPostition = {x:150, y: -200}
-    var fallingSpeed = 2.5
-    console.log("hit")
+    var pipeUpPosition = {x: 250, y: 400}
+    var pipeDownPostition = {x:250, y: -200}
+    var fallingSpeed = 5
+    var flyingSpeed = 3
+    
 
     const canvas = canvasRef.current
     const ctx = canvas.getContext("2d")
@@ -63,21 +65,22 @@ export function Flappy() {
         ctx.drawImage(pipeUp, pipeUpPosition.x, pipeUpPosition.y )
         ctx.drawImage(pipeDown, pipeDownPostition.x, pipeDownPostition.y )
 
-        
-        flappyPosition.y = flappyPosition.y + fallingSpeed
-        if (flappyPosition.y === canvas.height ) {
+        // move the stuff
+        flappyPosition.y += fallingSpeed
+        pipeUpPosition.x -= flyingSpeed
+        pipeDownPostition.x -= flyingSpeed
+
+        if (flappyPosition.y === canvas.height - 20 ) {
           ctx.font = "50px Arial"
           ctx.fillText("GAME OVER", 150, 160)
         }else {
           requestAnimationFrame(draw)
 
         }
-
-
     }
 
     draw()
-  },[bgImage])
+  },[bgImage, restart])
 
 
   
@@ -90,6 +93,7 @@ export function Flappy() {
     <canvas id="myCanvas" width="500" height="500" ref={canvasRef}>
         Your browser does not support the canvas element.
     </canvas>
+    <button onClick={() =>setRestart(v=> !v)}>restart</button>
     </>
   )
 }
