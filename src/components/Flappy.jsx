@@ -31,10 +31,8 @@ export function Flappy() {
   },[])
 
   function getPipe(n) {
-
-    const height = Math.floor(Math.random() * 500) - 200;
-
-    const distanceBetween = 100 * (n - 1)
+    const height = Math.floor(Math.random() * 0) - 200;
+    const distanceBetween = 250 * (n - 1)
 
     return {
       up : {
@@ -86,13 +84,18 @@ export function Flappy() {
         ctx.drawImage(bgImage, 0, 0)
       }
         ctx.drawImage(flappy, flappyPosition.x, flappyPosition.y)
-        ctx.drawImage(pipeUp, pipeUpPosition.x, pipeUpPosition.y )
-        ctx.drawImage(pipeDown, pipeDownPostition.x, pipeDownPostition.y )
+
+        pipes.forEach(p=> {
+          ctx.drawImage(pipeUp, p.up.x, p.up.y)
+          ctx.drawImage(pipeDown, p.down.x, p.down.y)
+        })
 
         // move the stuff
         flappyPosition.y += fallingSpeed
         pipeUpPosition.x -= flyingSpeed
         pipeDownPostition.x -= flyingSpeed
+
+        pipes.forEach(p=> {p.up.x -= flyingSpeed; p.down.x -= flyingSpeed})
 
         if (flappyPosition.y === canvas.height - 20 ) {
           ctx.font = "50px Arial"
