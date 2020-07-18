@@ -35,7 +35,7 @@ export function Flappy() {
   },[])
 
   function getPipe(n) {
-    const height = getRndInteger(100, 400)
+    const height = getRndInteger(150, 400)
 
     const distanceBetween = 250 * (n - 1)
 
@@ -74,9 +74,8 @@ export function Flappy() {
       getPipe(1),
       getPipe(2),
       getPipe(3),
+      getPipe(4)
     ]
-    
-    
     
     const canvas = canvasRef.current
     const ctx = canvas.getContext("2d")
@@ -101,14 +100,20 @@ export function Flappy() {
         pipeUpPosition.x -= flyingSpeed
         pipeDownPostition.x -= flyingSpeed
 
+        
         pipes.forEach(p=> {p.up.x -= flyingSpeed; p.down.x -= flyingSpeed})
+
+        if (pipes[0].up.x < -100) {
+          var newPipe = getPipe(4)
+          pipes.push(newPipe)
+          pipes.shift()
+        }
 
         if (flappyPosition.y === canvas.height - 20 ) {
           ctx.font = "50px Arial"
           ctx.fillText("GAME OVER", 150, 160)
         }else {
           requestAnimationFrame(draw)
-
         }
     }
 
