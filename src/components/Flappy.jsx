@@ -94,7 +94,6 @@ export function Flappy() {
           ctx.drawImage(pipeUp, p.up.x, p.up.y)
           ctx.drawImage(pipeDown, p.down.x, p.down.y)
         })
-
         // move the stuff
         flappyPosition.y += fallingSpeed
         pipeUpPosition.x -= flyingSpeed
@@ -109,7 +108,19 @@ export function Flappy() {
           pipes.shift()
         }
 
-        if (flappyPosition.y === canvas.height - 20 ) {
+
+        const currentPipes = pipes[0]
+        const birdXMax = flappyPosition.x + flappy.width
+        const hitTheTopPipe = birdXMax >= currentPipes.down.x 
+          && flappyPosition.y <   (currentPipes.down.y + pipeDown.height)
+
+          const hitTheBottomPipe = birdXMax >= currentPipes.up.x 
+          && flappyPosition.y >   (currentPipes.up.y)
+
+        const birdCrashed = flappyPosition.y === canvas.height - 20
+          
+
+        if (birdCrashed || hitTheTopPipe || hitTheBottomPipe) {
           ctx.font = "50px Arial"
           ctx.fillText("GAME OVER", 150, 160)
         }else {
