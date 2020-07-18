@@ -14,12 +14,9 @@ export function Flappy() {
   const [bgImage, setBgImage] = React.useState(null)
   const [flappy, setFlappy] = React.useState(null)
 
-
   const canvasRef = React.useRef(null)
 
-
   React.useEffect(()=> {
-    
 
     const canvas = canvasRef.current
     const ctx = canvas.getContext("2d")
@@ -39,8 +36,6 @@ export function Flappy() {
   },[])
 
   React.useEffect(()=> {
-    
-
     if (!bgImage) return
 
     var flappy = new Image()
@@ -51,9 +46,10 @@ export function Flappy() {
     var pipeDown = new Image()
     pipeDown.src = pipeDownImage
 
-    var flappyPosition = {x: 20, y: 300}
+    var flappyPosition = {x: 20, y: 200}
     var pipeUpPosition = {x: 150, y: 400}
     var pipeDownPostition = {x:150, y: -200}
+    var fallingSpeed = 2.5
     console.log("hit")
 
     const canvas = canvasRef.current
@@ -67,8 +63,17 @@ export function Flappy() {
         ctx.drawImage(pipeUp, pipeUpPosition.x, pipeUpPosition.y )
         ctx.drawImage(pipeDown, pipeDownPostition.x, pipeDownPostition.y )
 
+        
+        flappyPosition.y = flappyPosition.y + fallingSpeed
+        if (flappyPosition.y === canvas.height ) {
+          ctx.font = "50px Arial"
+          ctx.fillText("GAME OVER", 150, 160)
+        }else {
+          requestAnimationFrame(draw)
 
-        requestAnimationFrame(draw)
+        }
+
+
     }
 
     draw()
