@@ -6,7 +6,8 @@ import { useEventListener, useAudio } from '../hooks'
 import { Tada, TryAgain } from '../audio'
 import flappy2 from '../images/flappy2.png'
 import bg from '../images/bg.jpg'
-import {pipeUp as pipeUpImage} from '../images/pipeUp.png'
+import pipeUpImage from '../images/pipeUp.png'
+import pipeDownImage from '../images/pipeDown.png'
 
 export function Flappy() {
 
@@ -34,8 +35,6 @@ export function Flappy() {
 
 
 
-   
-    
 
   },[])
 
@@ -49,7 +48,12 @@ export function Flappy() {
     var pipeUp = new Image()
     pipeUp.src= pipeUpImage
 
+    var pipeDown = new Image()
+    pipeDown.src = pipeDownImage
+
     var flappyPosition = {x: 20, y: 300}
+    var pipeUpPosition = {x: 150, y: 400}
+    var pipeDownPostition = {x:150, y: -200}
     console.log("hit")
 
     const canvas = canvasRef.current
@@ -60,6 +64,9 @@ export function Flappy() {
         ctx.drawImage(bgImage, 0, 0)
       }
         ctx.drawImage(flappy, flappyPosition.x, flappyPosition.y)
+        ctx.drawImage(pipeUp, pipeUpPosition.x, pipeUpPosition.y )
+        ctx.drawImage(pipeDown, pipeDownPostition.x, pipeDownPostition.y )
+
 
         requestAnimationFrame(draw)
     }
