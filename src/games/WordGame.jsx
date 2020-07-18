@@ -26,7 +26,9 @@ export default function LetterGame() {
   var startingWords =[
  //   "chicken","banana","leopard","dolphin","panther",'aeroplane','fridge','freezer','poster','table','family','animal'
 //  'dad','milk','star','genius','poo-poo','chick','wood','timmy','tommy','tammy','dizzy'
-'andrea','lizzy','dizzy','louisa','max','maxymus','jhonna','jojo' ,'maria','yvvonne','jet','ava' ]
+// 'andrea','lizzy','dizzy','louisa','max','maxymus','jhonna','jojo' ,'maria','yvvonne','jet','ava' ,'dolphin','leopard','hyena'
+
+,'bear']
 
   const [words, setWords] = React.useState(startingWords)
   const [position, setPosition] = React.useState(0)
@@ -37,6 +39,16 @@ export default function LetterGame() {
   const { play } = useAudio(Tada)
   const { play : playOops} = useAudio(TryAgain)
   const [score, setScore]= React.useState(0)
+
+  React.useEffect(() => {
+    const otherWords = localStorage.getItem('words')  
+    
+    if (otherWords) {
+      let newWords = otherWords.split('\n')
+      setWords(prev => [...prev, ...newWords])
+  
+    }
+  }, [])
 
 
 const reset = () => {

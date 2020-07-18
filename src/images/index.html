@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <canvas id="myCanvas" width="500" height="500" style="border:1px solid #c3c3c3;">
+        Your browser does not support the canvas element.
+    </canvas>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var flappyPosition = {x: 20, y: 300}
+        var bg = new Image()
+        bg.src = 'bg.jpg'
+
+        var flappy = new Image()
+        flappy.src = 'flappy2.png'
+
+        var pipeUp = new Image()
+        pipeUp.src="pipeUp.png"
+        
+
+        function draw() {
+
+            ctx.drawImage(bg, 0, 0)
+            ctx.drawImage(flappy, flappyPosition.x, flappyPosition.y)
+
+            requestAnimationFrame(draw)
+        }
+
+        draw()
+
+    </script>
+
+</body>
+
+</html>
