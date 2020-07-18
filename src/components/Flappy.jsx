@@ -28,13 +28,25 @@ export function Flappy() {
     _bgImage.onload = ()=> {
       setBgImage(_bgImage)
     }
-
-
-
-
-
-
   },[])
+
+  function getPipe(n) {
+
+    const height = Math.floor(Math.random() * 500) - 200;
+
+    const distanceBetween = 100 * (n - 1)
+
+    return {
+      up : {
+        x: 250 + distanceBetween, 
+        y: height + 600
+      },
+      down : {
+        x: 250 + distanceBetween,
+        y: height
+      }  
+    }
+  }
 
   React.useEffect(()=> {
     if (!bgImage) return
@@ -50,12 +62,24 @@ export function Flappy() {
     var flappyPosition = {x: 20, y: 200}
     var pipeUpPosition = {x: 250, y: 400}
     var pipeDownPostition = {x:250, y: -200}
-    var fallingSpeed = 5
+    var fallingSpeed = 2
     var flyingSpeed = 3
-    
 
+    
+    var pipes = [
+      getPipe(1),
+      getPipe(2),
+      getPipe(3),
+    ]
+    
+    
+    
     const canvas = canvasRef.current
     const ctx = canvas.getContext("2d")
+    
+    
+    window.addEventListener("keydown", ()=> {flappyPosition.y -= 40} )
+    
 
     function draw() {
       if (bgImage && bgImage.complete){
