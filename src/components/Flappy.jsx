@@ -139,7 +139,7 @@ export function Flappy() {
     <>
     hellp flappy
 
-    <canvas id="myCanvas" width="500" height="500" ref={canvasRef}>
+    <canvas id="myCanvas" width="500" height="500" ref={canvasRef} onClick={() =>setRestart(v=> !v)}>
         Your browser does not support the canvas element.
     </canvas>
     <button onClick={() =>setRestart(v=> !v)}>restart</button>
