@@ -1,9 +1,6 @@
 // eslint-disable
 import React from 'react';
 import '../App.css';
-import { Word, RandomEmoji } from '.'
-import { useEventListener, useAudio } from '../hooks'
-import { Tada, TryAgain } from '../audio'
 import flappy2 from '../images/flappy2.png'
 import bg from '../images/bg.jpg'
 import pipeUpImage from '../images/pipeUp.png'
@@ -16,15 +13,13 @@ function getRndInteger(min, max) {
 export function Flappy() {
 
   const [bgImage, setBgImage] = React.useState(null)
-  const [flappy, setFlappy] = React.useState(null)
   const [restart, setRestart] = React.useState(false)
 
   const canvasRef = React.useRef(null)
 
   React.useEffect(()=> {
 
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext("2d")
+    
     
     var _bgImage = new Image()
     _bgImage.src = bg

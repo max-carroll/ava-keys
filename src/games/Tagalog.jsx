@@ -1,7 +1,7 @@
 import React from 'react'
 import { Paper, Grid } from '@material-ui/core'
 import { useAudio } from '../hooks'
-import { ChickenIntro, CatIntro, PresentIntro, IceCreamIntro, Tada, } from '../audio'
+import { ChickenIntro, CatIntro, PresentIntro, IceCreamIntro} from '../audio'
 
 import Princess from '../audio/Princess.mp3'
 import Lips from '../audio/Lips.mp3'

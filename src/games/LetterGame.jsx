@@ -30,7 +30,7 @@ const getLetterFromEvent = (e) => {
 
 export default function LetterGame() {
   // https://usehooks.com/useEventListener/
-  const [currentPress, setCurrentPress] = React.useState(null);
+  const [, setCurrentPress] = React.useState(null);
   const [currentLetter, setCurrentLetter] = React.useState(getRandomLetter());
   const [win, setWin] = React.useState(false);
   const { play } = useAudio(Tada);

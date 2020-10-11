@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper, Grid, TextField, Button } from '@material-ui/core'
+import { TextField, Button } from '@material-ui/core'
 import { useSpeech } from '../hooks'
 
 

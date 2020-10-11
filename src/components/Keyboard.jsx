@@ -13,7 +13,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
   const classes = useStyles();
 
   const scale = `scale(${size})`;
-  const transform = `matrix(${size},0,0,${size},0,0)`;
 
   const originalWidth = 865.28601;
   const originalHeight = 309.85291;

@@ -1,9 +1,6 @@
 // eslint-disable
 import React from 'react';
 import '../App.css';
-import { Word, RandomEmoji } from '.'
-import { useEventListener, useAudio } from '../hooks'
-import { Tada, TryAgain } from '../audio'
 import { TextField, Button, Grid } from '@material-ui/core';
 
 export function SaveWords() {

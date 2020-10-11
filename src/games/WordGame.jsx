@@ -23,13 +23,6 @@ export default function LetterGame() {
 
   var startingWords = ['hello','timmy']
 
-  var startingWords =[
- //   "chicken","banana","leopard","dolphin","panther",'aeroplane','fridge','freezer','poster','table','family','animal'
-//  'dad','milk','star','genius','poo-poo','chick','wood','timmy','tommy','tammy','dizzy'
-// 'andrea','lizzy','dizzy','louisa','max','maxymus','jhonna','jojo' ,'maria','yvvonne','jet','ava' ,'dolphin','leopard','hyena'
-
-,'bear']
-
   const [words, setWords] = React.useState(startingWords)
   const [position, setPosition] = React.useState(0)
   const [currentWord, setWord] = React.useState("tin")

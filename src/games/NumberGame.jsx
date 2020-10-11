@@ -1,9 +1,8 @@
-// eslint-disable
 import React from 'react';
 import '../App.css';
 import { RandomEmoji } from '../components'
 import { useAudio } from '../hooks'
-import { Tada, TryAgain } from '../audio'
+import { Tada } from '../audio'
 import { TextField, Grid, Typography } from '@material-ui/core';
 
 export default function LetterGame() {
@@ -13,8 +12,7 @@ export default function LetterGame() {
   const [sum, setSum] = React.useState(firstSum)
   const [win, setWin] = React.useState(false)
   const { play } = useAudio(Tada)
-  const { play: playOops } = useAudio(TryAgain)
-
+  
   const textBox = React.useRef(null)
 
   const [answer, setAnswer] = React.useState(null)
@@ -71,7 +69,7 @@ export default function LetterGame() {
   }
 
   React.useEffect(() => {
-    if (answer == sum.answer) {
+    if (answer === sum.answer) {
       setWin(true)
       var newSum = GetSum()
       // setNewSum(newLetter)
@@ -84,10 +82,11 @@ export default function LetterGame() {
 
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answer, play, sum.answer])
 
   React.useEffect(() => {
-    if (win == false) {
+    if (win === false) {
       textBox.current.focus()
       console.log(textBox)
     }
