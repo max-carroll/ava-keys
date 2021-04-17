@@ -26,6 +26,7 @@ export default function LetterGame() {
   var startingWords =[
  //   "chicken","banana","leopard","dolphin","panther",'aeroplane','fridge','freezer','poster','table','family','animal'
 //  'dad','milk','star','genius','poo-poo','chick','wood','timmy','tommy','tammy','dizzy'
+'sloth','chicken','giraffe','monkey','narwhal','horse','cat','dog','hamster','fish','lizard',
 'andrea','lizzy','dizzy','louisa','max','maxymus','jhonna','jojo' ,'maria','yvvonne','jet','ava' ]
 
   const [words, setWords] = React.useState(startingWords)

@@ -2,7 +2,7 @@
 import React from 'react';
 import '../App.css';
 import { RandomEmoji } from '../components'
-import { useAudio } from '../hooks'
+import { useAudio, useSpeech } from '../hooks'
 import { Tada, TryAgain } from '../audio'
 import { TextField, Grid, Typography } from '@material-ui/core';
 
@@ -12,12 +12,15 @@ export default function LetterGame() {
 
   const [sum, setSum] = React.useState(firstSum)
   const [win, setWin] = React.useState(false)
+  const [praise, setPraise] = React.useState("Wow!")
   const { play } = useAudio(Tada)
   const { play: playOops } = useAudio(TryAgain)
 
   const textBox = React.useRef(null)
 
   const [answer, setAnswer] = React.useState(null)
+
+  const talk = useSpeech(praise)
 
   const handleChange = event => {
     setAnswer(event.target.value);
@@ -40,6 +43,17 @@ export default function LetterGame() {
     return [product, a]
 
   }
+
+  const praises = [
+    "oh my goodness, that was fantastic how did you do that",
+    "your on fire!",
+    "hold the phone! We got a genius here",
+    "stop the press, change the headline!",
+    "its a miracle! no one will believe it",
+    "you've done this before havent you",
+    "Im a computer and even Im impressed",
+    
+  ]
 
 
   function getRandomOperation() {
@@ -70,14 +84,22 @@ export default function LetterGame() {
     }
   }
 
+  function GetNewPraise() {
+    var index = getRndInteger(0, praises.length)
+    return praises[index]
+  }
+
   React.useEffect(() => {
     if (answer == sum.answer) {
       setWin(true)
       var newSum = GetSum()
+      var newPraise = GetNewPraise()
       // setNewSum(newLetter)
       setSum(newSum)
       setAnswer(null)
-      play()
+      setPraise(newPraise)
+      talk()
+      //play()
       setTimeout(function () { setWin(false); }, 1000);
     }
     else {
