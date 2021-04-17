@@ -20,7 +20,7 @@ export function useSpeech(text) {
 
   // new SpeechSynthesisUtterance object
   var utter = new SpeechSynthesisUtterance();
-  utter.rate = 0.3;
+  utter.rate = 1;
   utter.pitch = 0.5;
   utter.text = text;
   utter.volume = 100;
