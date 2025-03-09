@@ -1,6 +1,6 @@
 // eslint-disable
 
-import React from "react";
+import React, { useCallback } from "react";
 import "../App.css";
 import { Letter, RandomEmoji } from "../components";
 import { useEventListener, useAudio, useSpeech } from "../hooks";
@@ -32,7 +32,7 @@ const getLetterFromEvent = (e: KeyboardEvent) => {
 
 export default function LetterGame() {
   // https://usehooks.com/useEventListener/
-  const [, setCurrentPress] = React.useState(null);
+  const [, setCurrentPress] = React.useState<string | null>(null);
   const [currentLetter, setCurrentLetter] = React.useState(getRandomLetter());
   const [win, setWin] = React.useState(false);
   const { play } = useAudio(Tada);
@@ -40,23 +40,26 @@ export default function LetterGame() {
 
   const talk = useSpeech(`Can you find letter ${currentLetter} `);
 
-  const handler = React.useCallback((e) => {
-    const letter = getLetterFromEvent(e);
-    setCurrentPress(letter);
-    if (currentLetter.toLowerCase() === letter.toLowerCase()) {
-      setWin(true);
-      const newLetter = getRandomLetter();
-      setCurrentLetter(newLetter);
-      play();
-      setTimeout(function () {
-        setWin(false);
-      }, 1000);
-    } else {
-      playOops();
-    }
-  });
+  const handler = useCallback(
+    (e: KeyboardEvent) => {
+      const letter = getLetterFromEvent(e);
+      setCurrentPress(letter);
+      if (currentLetter.toLowerCase() === letter.toLowerCase()) {
+        setWin(true);
+        const newLetter = getRandomLetter();
+        setCurrentLetter(newLetter);
+        play();
+        setTimeout(function () {
+          setWin(false);
+        }, 1000);
+      } else {
+        playOops();
+      }
+    },
+    [currentLetter, play, playOops]
+  );
 
-  useEventListener("keydown", handler);
+  useEventListener("keydown", handler as EventListener);
 
   React.useEffect(() => {
     // return document.removeEventListener('keydown', handleKeyDown)

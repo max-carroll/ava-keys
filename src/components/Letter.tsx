@@ -1,32 +1,36 @@
-import {createUseStyles} from 'react-jss'
+import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
-  letter : {
-    fontSize: '15rem',
+  letter: {
+    fontSize: "15rem",
   },
-  complete : {
-    color: 'yellow'
+  complete: {
+    color: "yellow",
   },
-  uncomplete : {
-    color: 'blue'
-  }
- })
+  uncomplete: {
+    color: "blue",
+  },
+});
 
- interface LetterProps  {
-  letter: string,
-  postitionInWord: number,
-  currentPosition : number
- }
+interface LetterProps {
+  letter: string;
+  postitionInWord?: number;
+  currentPosition?: number;
+}
 
-export default function Letter({letter, postitionInWord, currentPosition} : LetterProps) {
+export default function Letter({
+  letter,
+  postitionInWord = 0,
+  currentPosition = 0,
+}: LetterProps) {
+  const classes = useStyles();
+  const style =
+    postitionInWord < currentPosition ? classes.complete : classes.uncomplete;
 
-  const classes =useStyles()
- const style =  postitionInWord < currentPosition ? classes.complete : classes.uncomplete
-
- //console.log(postitionInWord, currentPosition)
+  //console.log(postitionInWord, currentPosition)
   return (
-    <span className={ style}>
-      <span className={classes.letter} >{letter}</span> 
+    <span className={style}>
+      <span className={classes.letter}>{letter}</span>
     </span>
-  )
+  );
 }
