@@ -1,5 +1,5 @@
 import {createUseStyles} from 'react-jss'
-import React from 'react';
+
 const useStyles = createUseStyles({
   letter : {
     fontSize: '15rem',
@@ -10,11 +10,15 @@ const useStyles = createUseStyles({
   uncomplete : {
     color: 'blue'
   }
-  
-
  })
 
-export default function Letter({letter, postitionInWord, currentPosition}) {
+ interface LetterProps  {
+  letter: string,
+  postitionInWord: number,
+  currentPosition : number
+ }
+
+export default function Letter({letter, postitionInWord, currentPosition} : LetterProps) {
 
   const classes =useStyles()
  const style =  postitionInWord < currentPosition ? classes.complete : classes.uncomplete
