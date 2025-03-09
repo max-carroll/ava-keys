@@ -29,7 +29,6 @@ export const WordCard = ({ word }: { word: Word }) => {
           container
           style={{ height: 200, width: 200 }}
           direction="column"
-          justify="space-around"
           alignItems="center"
         >
           <Grid item>{word.tagalog}</Grid>

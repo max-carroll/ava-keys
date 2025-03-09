@@ -127,13 +127,7 @@ export default function LetterGame() {
     <div className="App">
       <header className="App-header">
         {!win && sum && (
-          <Grid
-            container
-            justify="center"
-            alignContent="center"
-            alignItems="center"
-            spacing={2}
-          >
+          <Grid container alignContent="center" alignItems="center" spacing={2}>
             <Grid item>
               <Typography variant="h1">{sum.question}</Typography>
             </Grid>
