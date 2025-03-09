@@ -1,8 +1,7 @@
 // eslint-disable
-import React from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
-import { AppBar, Toolbar, Typography, Button } from '@material-ui/core'
+import { BrowserRouter,  Route, Link, Routes } from 'react-router'
+import { AppBar, Toolbar, Typography, Button } from '@mui/material'
 
 
 import { LetterGame, WordGame, NumberGame, Tagalog } from './games';
@@ -32,15 +31,15 @@ function App() {
         <div className="App">
           <header className="App-header">
 
-            <Switch>
-              <Route component={WordGame} path="/words" />
-              <Route component={LetterGame} path="/letters" />
-              <Route component={NumberGame} path="/numbers" />
-              <Route component={Tagalog} path="/tagalog" />
-              <Route component={Speak} path="/talk" />
-              <Route component={SaveWords} path="/savewords" />
-              <Route component={Flappy} path="/flappy" />
-            </Switch>
+            <Routes>
+              <Route element={<WordGame />} path="/words" />
+              <Route element={<LetterGame />} path="/letters" />
+              <Route element={<NumberGame />} path="/numbers" />
+              <Route element={<Tagalog />} path="/tagalog" />
+              <Route element={<Speak />} path="/talk" />
+              <Route element={<SaveWords />} path="/savewords" />
+              <Route element={<Flappy />} path="/flappy" />
+            </Routes>
 
 
 
