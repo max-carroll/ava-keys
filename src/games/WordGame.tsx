@@ -1,5 +1,5 @@
 // eslint-disable
-import React from "react";
+import React, { useCallback } from "react";
 import "../App.css";
 import { Word, RandomEmoji } from "../components";
 import { useEventListener, useAudio } from "../hooks";
@@ -78,42 +78,45 @@ export default function LetterGame() {
     setCurrentLetter("tin".charAt(0));
   };
 
-  const handler = React.useCallback((e) => {
-    const press = getLetterFromEvent(e);
-    console.log(
-      `press: ${press}, currentLetter: ${currentLetter}, position: ${position}`
-    );
+  const handler = useCallback(
+    (e: Event) => {
+      const press = getLetterFromEvent(e);
+      console.log(
+        `press: ${press}, currentLetter: ${currentLetter}, position: ${position}`
+      );
 
-    if (currentLetter.toLowerCase() === press.toLowerCase()) {
-      let word = currentWord;
-      let nextPosition = position + 1;
-      setPosition(nextPosition);
+      if (currentLetter.toLowerCase() === press.toLowerCase()) {
+        let word = currentWord;
+        let nextPosition = position + 1;
+        setPosition(nextPosition);
 
-      if (nextPosition === word.length) {
-        if (words.length === 0) {
-          setWin(true); // the game is completely won
-        } else {
-          setScore(score + 10);
-          word = words.pop();
-          const updatedWords = words.filter((w) => w !== word);
-          nextPosition = 0;
-          setPosition(0);
-          setWord(word);
-          setWords(updatedWords);
-          setWordComplete(true);
-          play();
-          setTimeout(function () {
-            setWordComplete(false);
-          }, 1000);
+        if (nextPosition === word.length) {
+          if (words.length === 0) {
+            setWin(true); // the game is completely won
+          } else {
+            setScore(score + 10);
+            word = words.pop()!;
+            const updatedWords = words.filter((w) => w !== word);
+            nextPosition = 0;
+            setPosition(0);
+            setWord(word);
+            setWords(updatedWords);
+            setWordComplete(true);
+            play();
+            setTimeout(function () {
+              setWordComplete(false);
+            }, 1000);
+          }
         }
-      }
 
-      const newLetter = word.charAt(nextPosition);
-      setCurrentLetter(newLetter);
-    } else {
-      playOops();
-    }
-  });
+        const newLetter = word.charAt(nextPosition);
+        setCurrentLetter(newLetter);
+      } else {
+        playOops();
+      }
+    },
+    [currentLetter, currentWord, play, playOops, position, score, words]
+  );
 
   useEventListener("keydown", handler);
 
