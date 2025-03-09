@@ -35,5 +35,5 @@ export function useSpeech(text: string) {
     window.speechSynthesis.speak(utter);
   };
 
-  return speak;
+  return [speak];
 }

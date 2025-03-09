@@ -1,6 +1,6 @@
 // eslint-disable
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "../App.css";
 import { Letter, RandomEmoji } from "../components";
 import { useEventListener, useAudio, useSpeech } from "../hooks";
@@ -34,11 +34,12 @@ export default function LetterGame() {
   // https://usehooks.com/useEventListener/
   const [, setCurrentPress] = React.useState<string | null>(null);
   const [currentLetter, setCurrentLetter] = React.useState(getRandomLetter());
+
   const [win, setWin] = React.useState(false);
   const { play } = useAudio(Tada);
   const { play: playOops } = useAudio(TryAgain);
 
-  const talk = useSpeech(`Can you find letter ${currentLetter} `);
+  const [talk] = useSpeech(`Can you find letter ${currentLetter} `);
 
   const handler = useCallback(
     (e: KeyboardEvent) => {
@@ -56,17 +57,20 @@ export default function LetterGame() {
         playOops();
       }
     },
-    [currentLetter, play, playOops]
+    [currentLetter, play]
   );
 
   useEventListener("keydown", handler as EventListener);
 
   React.useEffect(() => {
-    // return document.removeEventListener('keydown', handleKeyDown)
-    if (win) return;
     talk();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentLetter, win]);
+
+    return () => {
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, [currentLetter]);
 
   return (
     <Grid container direction="column">

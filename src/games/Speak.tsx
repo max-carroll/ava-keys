@@ -10,7 +10,7 @@ export const Speak = () => {
     setText(event.target.value);
   };
 
-  const talk = useSpeech(text);
+  const [talk] = useSpeech(text);
 
   return (
     <>
