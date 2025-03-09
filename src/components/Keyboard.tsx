@@ -1,15 +1,18 @@
-import React from "react";
 import clsx from "clsx";
+import { createUseStyles } from "react-jss";
 
-import { makeStyles } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = createUseStyles(() => ({
   selected: {
     fill: "yellow",
   },
 }));
 
-export const Keyboard = ({ letter, size = 0.5 }) => {
+interface KeyboardProps {
+  letter: string;
+  size?: number;
+}
+
+export const Keyboard = ({ letter, size = 0.5 }: KeyboardProps) => {
   const classes = useStyles();
 
   const scale = `scale(${size})`;
@@ -80,7 +83,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               y="510.93359"
               ry="6.8571429"
               rx="6.8571429"
-              label="#rect4975"
               className={clsx({ [classes.selected]: letter === "a" })}
             />
             <rect
@@ -91,7 +93,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               width="42.857143"
               id="sKey"
               rx="6.8571429"
-              label="#rect4977"
               className={clsx({ [classes.selected]: letter === "s" })}
             />
             <rect
@@ -122,7 +123,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               y="510.93359"
               ry="6.8571429"
               rx="6.8571429"
-              label="#rect4983"
               className={clsx({ [classes.selected]: letter === "g" })}
             />
             <rect
@@ -133,7 +133,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               width="42.857143"
               id="hKey"
               rx="6.8571429"
-              label="#rect4985"
               className={clsx({ [classes.selected]: letter === "h" })}
             />
             <rect
@@ -144,7 +143,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               y="510.93359"
               ry="6.8571429"
               rx="6.8571429"
-              label="#rect4987"
               className={clsx({ [classes.selected]: letter === "j" })}
             />
             <rect
@@ -155,7 +153,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               width="42.857143"
               id="kKey"
               rx="6.8571429"
-              label="#rect4989"
               className={clsx({ [classes.selected]: letter === "k" })}
             />
             <rect
@@ -166,7 +163,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               y="510.93359"
               ry="6.8571429"
               rx="6.8571429"
-              label="#rect4991"
               className={clsx({ [classes.selected]: letter === "l" })}
             />
             <rect
@@ -378,7 +374,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               width="42.857143"
               id="zKey"
               rx="6.8571429"
-              label="#rect5001"
               className={clsx({ [classes.selected]: letter === "z" })}
             />
             <rect
@@ -389,7 +384,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               y="568.18109"
               ry="6.8571429"
               rx="6.8571429"
-              label="#rect5003"
               className={clsx({ [classes.selected]: letter === "x" })}
             />
             <rect
@@ -400,7 +394,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               width="42.857143"
               id="cKey"
               rx="6.8571429"
-              label="#rect5005"
               className={clsx({ [classes.selected]: letter === "c" })}
             />
             <rect
@@ -411,7 +404,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               y="568.18109"
               ry="6.8571429"
               rx="6.8571429"
-              label="#rect5007"
               className={clsx({ [classes.selected]: letter === "v" })}
             />
             <rect
@@ -422,7 +414,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               width="42.857143"
               id="bKey"
               rx="6.8571429"
-              label="#rect5009"
               className={clsx({ [classes.selected]: letter === "b" })}
             />
             <rect
@@ -433,7 +424,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               y="568.18109"
               ry="6.8571429"
               rx="6.8571429"
-              label="#rect5011"
               className={clsx({ [classes.selected]: letter === "n" })}
             />
             <rect
@@ -521,7 +511,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
             x="42.531765"
             y="453.68613"
             ry="6.8571429"
-            label="#rect4947"
             className={clsx({ [classes.selected]: letter === "q" })}
           />
           <rect
@@ -532,7 +521,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
             height="42.857143"
             width="42.857143"
             id="wKey"
-            label="#rect4949"
             className={clsx({ [classes.selected]: letter === "w" })}
           />
           <rect
@@ -543,7 +531,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
             x="156.16675"
             y="453.68613"
             ry="6.8571429"
-            label="#rect4951"
             className={clsx({ [classes.selected]: letter === "e" })}
           />
           <rect
@@ -554,7 +541,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
             height="42.857143"
             width="42.857143"
             id="rKey"
-            label="#rect4953"
             className={clsx({ [classes.selected]: letter === "r" })}
           />
           <rect
@@ -565,7 +551,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
             x="269.80176"
             y="453.68613"
             ry="6.8571429"
-            label="#rect4955"
             className={clsx({ [classes.selected]: letter === "t" })}
           />
           <rect
@@ -576,7 +561,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
             height="42.857143"
             width="42.857143"
             id="yKey"
-            label="#rect4957"
             className={clsx({ [classes.selected]: letter === "y" })}
           />
           <rect
@@ -587,7 +571,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
             x="383.43677"
             y="453.68613"
             ry="6.8571429"
-            label="#rect4959"
             className={clsx({ [classes.selected]: letter === "u" })}
           />
           <rect
@@ -598,7 +581,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
             height="42.857143"
             width="42.857143"
             id="iKey"
-            label="#rect4961"
             className={clsx({ [classes.selected]: letter === "i" })}
           />
           <rect
@@ -609,7 +591,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
             x="497.07172"
             y="453.68613"
             ry="6.8571429"
-            label="#rect4963"
             className={clsx({ [classes.selected]: letter === "o" })}
           />
           <rect
@@ -620,7 +601,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
             height="42.857143"
             width="42.857143"
             id="pKey"
-            label="#rect4965"
             className={clsx({ [classes.selected]: letter === "p" })}
           />
           <rect
@@ -720,52 +700,41 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
                   x="0"
                   requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/"
                 />
-                <g id="g5311" extraneous="self">
-                  <g
-                    rgbTrio="#4F008000FFFF"
-                    dimmedPercent="50"
-                    layer="yes"
-                    id="g5313"
-                  >
+                <g id="g5311">
+                  <g id="g5313">
                     <g id="g5315">
                       <circle
                         id="circle5317"
                         r="9.1239996"
                         cy="46.903999"
                         cx="9.1239996"
-                        knockout="Off"
                       />
                       <circle
                         id="circle5319"
                         r="9.1239996"
                         cy="84.667"
                         cx="74.547997"
-                        knockout="Off"
                       />
                       <path
                         connector-curvature="0"
                         id="path5321"
                         d="m 52.739,24.327 c 11.361,0 20.787,8.436 22.348,19.373 H 90.719 C 90.009,35.106 86.446,27.096 80.489,20.779 76.674,22.722 71.983,22.759 67.998,20.459 64.01,18.156 61.696,14.072 61.474,9.792 58.643,9.132 55.718,8.79 52.739,8.79 c -5.704,0 -11.216,1.245 -16.229,3.606 l 7.826,13.555 c 2.599,-1.046 5.435,-1.624 8.403,-1.624 z"
-                        knockout="Off"
                       />
                       <path
                         connector-curvature="0"
                         id="path5323"
                         d="M 75.088,50.098 C 73.531,61.039 64.103,69.48 52.739,69.48 c -2.97,0 -5.807,-0.578 -8.406,-1.626 L 36.506,81.41 c 5.012,2.362 10.526,3.608 16.232,3.608 2.981,0 5.91,-0.344 8.742,-1.004 0.218,-4.285 2.533,-8.376 6.524,-10.68 3.986,-2.302 8.679,-2.265 12.495,-0.318 5.952,-6.318 9.511,-14.327 10.219,-22.918 z"
-                        knockout="Off"
                       />
                       <path
                         connector-curvature="0"
                         id="path5325"
                         d="m 30.163,46.904 c 0,-7.193 3.381,-13.61 8.636,-17.747 L 30.975,15.604 c -1.835,1.282 -3.571,2.733 -5.188,4.349 -4.528,4.528 -7.775,9.995 -9.562,15.962 3.6,2.332 5.984,6.38 5.984,10.989 0,4.608 -2.384,8.657 -5.984,10.988 1.787,5.967 5.034,11.434 9.562,15.962 1.616,1.616 3.35,3.065 5.184,4.348 L 38.796,64.648 C 33.542,60.511 30.163,54.094 30.163,46.904 Z"
-                        knockout="Off"
                       />
                       <circle
                         id="circle5327"
                         r="9.1239996"
                         cy="9.1260004"
                         cx="74.540001"
-                        knockout="Off"
                       />
                     </g>
                     <g id="g5329" />
@@ -953,13 +922,11 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               d="m 178.14545,532.36476 h -2.30468 v -11.44531 c 1.46874,-0.0521 2.40885,-0.0781 2.82031,-0.0781 1.59895,10e-6 2.86458,0.48569 3.79687,1.45703 0.93229,0.97136 1.39843,2.26433 1.39844,3.8789 -1e-5,4.12501 -1.90365,6.1875 -5.71094,6.1875 v 0 z m -0.74218,-10.03906 v 8.55469 c 0.34895,0.0521 0.78124,0.0781 1.29687,0.0781 1.09375,10e-6 1.95312,-0.41015 2.57813,-1.23046 0.62499,-0.82031 0.93749,-1.95963 0.9375,-3.41797 -1e-5,-2.70833 -1.21616,-4.06249 -3.64844,-4.0625 -0.14584,10e-6 -0.53386,0.026 -1.16406,0.0781 v 0 z"
               id="dKey"
               connector-curvature="0"
-              label="#text5193"
             />
             <path
               d="m 236.21939,522.28664 v 3.17969 h 4.02344 v 1.32812 h -4.02344 v 5.53125 h -1.5625 v -11.44531 h 7.07031 v 1.40625 z"
               id="fKey"
               connector-curvature="0"
-              label="#text5197"
             />
             <path
               d="m 298.47378,521.67726 -0.64844,1.28907 c -0.78646,-0.58333 -1.5573,-0.87499 -2.3125,-0.875 -1.19792,10e-6 -2.14323,0.42188 -2.83594,1.26562 -0.69271,0.84376 -1.03906,1.96095 -1.03906,3.35156 0,1.32293 0.33984,2.38803 1.01953,3.19532 0.67969,0.80729 1.60547,1.21094 2.77735,1.21093 0.83332,10e-6 1.5078,-0.24999 2.02343,-0.75 v -2.67968 h -1.58593 v -1.32813 h 3.14843 v 4.98438 c -0.41667,0.35416 -0.9974,0.63932 -1.74218,0.85547 -0.7448,0.21614 -1.46876,0.32421 -2.17188,0.32421 -1.57813,0 -2.82422,-0.53515 -3.73828,-1.60546 -0.91406,-1.07031 -1.37109,-2.49349 -1.37109,-4.26954 0,-1.77082 0.5013,-3.20702 1.5039,-4.30859 1.0026,-1.10155 2.35547,-1.65233 4.0586,-1.65234 1.1927,10e-6 2.16405,0.33074 2.91406,0.99218 z"
@@ -1061,7 +1028,6 @@ export const Keyboard = ({ letter, size = 0.5 }) => {
               d="m 437.7185,588.18746 -1.35938,-7.35156 -2.5,7.50781 h -0.39062 l -2.57031,-7.50781 -1.32813,7.35156 h -1.48437 l 2.14062,-11.44531 h 0.71094 l 2.72656,8.35156 2.51563,-8.35156 h 0.70312 l 2.32031,11.44531 z"
               id="mKey"
               connector-curvature="0"
-              label="#text5265"
             />
             <path
               connector-curvature="0"

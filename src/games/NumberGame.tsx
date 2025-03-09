@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import "../App.css";
 import { RandomEmoji } from "../components";
 import { useAudio, useSpeech } from "../hooks";
@@ -13,14 +13,14 @@ export default function LetterGame() {
   const [praise, setPraise] = React.useState("Wow!");
   const { play } = useAudio(Tada);
 
-  const textBox = React.useRef(null);
+  const textBox = React.useRef<HTMLInputElement>(null);
 
-  const [answer, setAnswer] = React.useState(null);
+  const [answer, setAnswer] = React.useState<string | null>(null);
 
   const talk = useSpeech(praise);
 
-  const handleChange = (event) => {
-    setAnswer(event.target.value);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setAnswer(event.target?.value);
   };
 
   function getRndInteger(min: number, max: number) {

@@ -1,40 +1,43 @@
-import {createUseStyles} from 'react-jss'
-import React from 'react';
+import { createUseStyles } from "react-jss";
+
 const useStyles = createUseStyles({
-  letter : {
-    fontSize: '30rem'
-  }
- })
+  letter: {
+    fontSize: "30rem",
+  },
+});
 
- const getRandomEmoji = () => {
-  
-  var characters       = [
-    '😜', 
-    '😂', 
-    '😉', 
-    '😁', 
-    '😎','💋','🤞',
-    '👍',
-    '😃', '👀', '❤', '✨',
-    '🐱', '🍟','🎂',`😜😜`,
-    '🐉'];
+const getRandomEmoji = () => {
+  const characters = [
+    "😜",
+    "😂",
+    "😉",
+    "😁",
+    "😎",
+    "💋",
+    "🤞",
+    "👍",
+    "😃",
+    "👀",
+    "❤",
+    "✨",
+    "🐱",
+    "🍟",
+    "🎂",
+    `😜😜`,
+    "🐉",
+  ];
 
+  //👸💜🕳🕳☮🔯🧡💛💙🕎🕎✡☸🕉☪✝💟💌💓☸
 
-
-//👸💜🕳🕳☮🔯🧡💛💙🕎🕎✡☸🕉☪✝💟💌💓☸
-
-  var min=0; 
-  var max=characters.length;  
-  var random =  Math.floor(Math.random() * (+max - +min)) + +min; 
+  const min = 0;
+  const max = characters.length;
+  const random = Math.floor(Math.random() * (+max - +min)) + +min;
   const result = characters[random];
-  return result  
- }
+  return result;
+};
 
 export default function RandomEmoji() {
-
-  const emoji = getRandomEmoji()
-  const classes =useStyles()
-  return (
-    <div className={classes.letter} >{emoji}</div> 
-  )
+  const emoji = getRandomEmoji();
+  const classes = useStyles();
+  return <div className={classes.letter}>{emoji}</div>;
 }

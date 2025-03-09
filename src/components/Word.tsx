@@ -1,22 +1,29 @@
-import {createUseStyles} from 'react-jss'
-import React from 'react';
-import Letter from './Letter';
+import { createUseStyles } from "react-jss";
+import Letter from "./Letter";
 const useStyles = createUseStyles({
-  letter : {
-    fontSize: '30rem'
-  }
- })
+  letter: {
+    fontSize: "30rem",
+  },
+});
 
-export default function Word({word, currentPosition}) {
+interface WordProps {
+  word: string;
+  currentPosition: number;
+}
 
-  const letters = word.split('')
+export default function Word({ word, currentPosition }: WordProps) {
+  const letters = word.split("");
 
-  const classes =useStyles()
+  const classes = useStyles();
   return (
-    <div className={classes.letter} >
-      {
-        letters.map((l,i) => <Letter letter={l} postitionInWord={i} currentPosition={currentPosition} />)
-      }
-    </div> 
-  )
+    <div className={classes.letter}>
+      {letters.map((l, i) => (
+        <Letter
+          letter={l}
+          postitionInWord={i}
+          currentPosition={currentPosition}
+        />
+      ))}
+    </div>
+  );
 }
