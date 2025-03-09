@@ -1,9 +1,9 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { useSpeech } from "../hooks";
 
 export const Speak = () => {
-  const [text, setText] = React.useState("");
+  const [text, setText] = useState("");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.persist();

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import "../App.css";
 import { RandomEmoji } from "../components";
 import { useAudio, useSpeech } from "../hooks";
@@ -8,16 +8,16 @@ import { TextField, Grid, Typography } from "@mui/material";
 export default function LetterGame() {
   const firstSum = { question: "1 + 1 =", answer: "2" };
 
-  const [sum, setSum] = React.useState(firstSum);
-  const [win, setWin] = React.useState(false);
-  const [praise, setPraise] = React.useState("Wow!");
+  const [sum, setSum] = useState(firstSum);
+  const [win, setWin] = useState(false);
+  const [praise, setPraise] = useState("Wow!");
   const { play } = useAudio(Tada);
 
-  const textBox = React.useRef<HTMLInputElement>(null);
+  const textBox = useRef<HTMLInputElement>(null);
 
-  const [answer, setAnswer] = React.useState<string | null>(null);
+  const [answer, setAnswer] = useState<string | null>(null);
 
-  const talk = useSpeech(praise);
+  const [talk] = useSpeech(praise);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setAnswer(event.target?.value);
@@ -97,7 +97,7 @@ export default function LetterGame() {
     return praises[index];
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (answer === sum.answer) {
       setWin(true);
       const newSum = GetSum();
@@ -116,7 +116,7 @@ export default function LetterGame() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answer, play, sum.answer]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (win === false) {
       textBox.current?.focus();
       console.log(textBox);

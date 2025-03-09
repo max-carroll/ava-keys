@@ -23,6 +23,13 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      "no-restricted-syntax": [
+        "error",
+        {
+          "selector": "MemberExpression[object.name='React']",
+          "message": "Use named imports instead of React.useEffect, React.useState, etc."
+        }
+      ]
     },
   },
 )

@@ -1,6 +1,6 @@
 // eslint-disable
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import "../App.css";
 import { Letter, RandomEmoji } from "../components";
 import { useEventListener, useAudio, useSpeech } from "../hooks";
@@ -32,10 +32,10 @@ const getLetterFromEvent = (e: KeyboardEvent) => {
 
 export default function LetterGame() {
   // https://usehooks.com/useEventListener/
-  const [, setCurrentPress] = React.useState<string | null>(null);
-  const [currentLetter, setCurrentLetter] = React.useState(getRandomLetter());
+  const [, setCurrentPress] = useState<string | null>(null);
+  const [currentLetter, setCurrentLetter] = useState(getRandomLetter());
 
-  const [win, setWin] = React.useState(false);
+  const [win, setWin] = useState(false);
   const { play } = useAudio(Tada);
   const { play: playOops } = useAudio(TryAgain);
 
@@ -62,7 +62,7 @@ export default function LetterGame() {
 
   useEventListener("keydown", handler as EventListener);
 
-  React.useEffect(() => {
+  useEffect(() => {
     talk();
 
     return () => {

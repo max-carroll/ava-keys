@@ -1,5 +1,5 @@
 // eslint-disable
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../App.css";
 import flappy2 from "../images/flappy2.png";
 import bg from "../images/bg.jpg";
@@ -11,12 +11,12 @@ function getRndInteger(min: number, max: number) {
 }
 
 export function Flappy() {
-  const [bgImage, setBgImage] = React.useState<HTMLImageElement | null>(null);
-  const [restart, setRestart] = React.useState(false);
+  const [bgImage, setBgImage] = useState<HTMLImageElement | null>(null);
+  const [restart, setRestart] = useState(false);
 
-  const canvasRef = React.useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const _bgImage = new Image();
     _bgImage.src = bg;
     console.log(bg);
@@ -42,7 +42,7 @@ export function Flappy() {
     };
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!bgImage) return;
 
     const flappy = new Image();
@@ -89,7 +89,7 @@ export function Flappy() {
       });
 
       if (pipes[0].up.x < -100) {
-        var newPipe = getPipe(4);
+        const newPipe = getPipe(4);
         pipes.push(newPipe);
         pipes.shift();
       }

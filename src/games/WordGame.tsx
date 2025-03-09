@@ -1,5 +1,5 @@
 // eslint-disable
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "../App.css";
 import { Word, RandomEmoji } from "../components";
 import { useEventListener, useAudio } from "../hooks";
@@ -47,19 +47,19 @@ export default function LetterGame() {
     "ava",
   ];
 
-  const [words, setWords] = React.useState(startingWords);
-  const [position, setPosition] = React.useState(0);
-  const [currentWord, setWord] = React.useState("tin");
-  const [currentLetter, setCurrentLetter] = React.useState(
+  const [words, setWords] = useState(startingWords);
+  const [position, setPosition] = useState(0);
+  const [currentWord, setWord] = useState("tin");
+  const [currentLetter, setCurrentLetter] = useState(
     currentWord.charAt(position)
   );
-  const [win, setWin] = React.useState(false);
-  const [wordComplete, setWordComplete] = React.useState(false);
+  const [win, setWin] = useState(false);
+  const [wordComplete, setWordComplete] = useState(false);
   const { play } = useAudio(Tada);
   const { play: playOops } = useAudio(TryAgain);
-  const [score, setScore] = React.useState(0);
+  const [score, setScore] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const otherWords = localStorage.getItem("words");
 
     if (otherWords) {

@@ -1,15 +1,15 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
 export default function useAudio(url: string) {
-  const [audio] = React.useState(new Audio(url));
-  const [playing, setPlaying] = React.useState(false);
+  const [audio] = useState(new Audio(url));
+  const [playing, setPlaying] = useState(false);
 
   const toggle = () => setPlaying(!playing);
   const play = () => {
     audio.play();
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (playing) {
       audio.play();
     } else {
