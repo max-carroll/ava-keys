@@ -2,11 +2,11 @@ import { useRef, useEffect } from "react";
 
 export default function useEventListener(
   eventName: string,
-  handler: (event: Event) => void,
+  handler: EventListener,
   element = window
 ) {
   // Create a ref that stores handler
-  const savedHandler = useRef<(event: Event) => void>(null);
+  const savedHandler = useRef<EventListener>(null);
 
   // Update ref.current value if handler changes.
   // This allows our effect below to always get latest handler ...
@@ -24,7 +24,8 @@ export default function useEventListener(
       if (!isSupported) return;
 
       // Create event listener that calls handler function stored in ref
-      const eventListener = (event: Event) => savedHandler.current?.(event);
+      const eventListener: EventListener = (event) =>
+        savedHandler.current?.(event);
 
       // Add event listener
       element.addEventListener(eventName, eventListener);

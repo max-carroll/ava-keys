@@ -5,7 +5,7 @@ import { Word, RandomEmoji } from "../components";
 import { useEventListener, useAudio } from "../hooks";
 import { Tada, TryAgain } from "../audio";
 
-const getLetterFromEvent = (e) => {
+const getLetterFromEvent = (e: KeyboardEvent) => {
   let keynum;
   if (window.event) {
     // IE
@@ -14,7 +14,7 @@ const getLetterFromEvent = (e) => {
     // Netscape/Firefox/Opera
     keynum = e.which;
   }
-  const letter = String.fromCharCode(keynum);
+  const letter = String.fromCharCode(keynum as number);
   return letter;
 };
 
@@ -79,7 +79,7 @@ export default function LetterGame() {
   };
 
   const handler = useCallback(
-    (e: Event) => {
+    (e: KeyboardEvent) => {
       const press = getLetterFromEvent(e);
       console.log(
         `press: ${press}, currentLetter: ${currentLetter}, position: ${position}`
@@ -118,7 +118,7 @@ export default function LetterGame() {
     [currentLetter, currentWord, play, playOops, position, score, words]
   );
 
-  useEventListener("keydown", handler);
+  useEventListener("keydown", handler as EventListener);
 
   return (
     <div className="App">
